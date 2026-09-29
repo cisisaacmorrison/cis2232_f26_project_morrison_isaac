@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aldo Reny's Gourmet Panini</title>
+    <link rel="stylesheet" th:href="@{/css/cisStyle.css}">
+</head>
+<body>
+
+<h1>Aldo Reny's Gourmet Panini</h1>
+
+<p>
+    <a href="/panini/add">Create New Order</a>
+</p>
+
+<table class="skills-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Size</th>
+        <th>Bread</th>
+        <th>Custom</th>
+        <th>Sandwich</th>
+        <th>Ingredients</th>
+        <th>Sauce</th>
+        <th>Total</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.orderDate}"></td>
+        <td th:text="${order.sandwichSize}"></td>
+        <td th:text="${order.breadType}"></td>
+        <td th:text="${order.customOrder}"></td>
+        <td th:text="${order.sandwichName}"></td>
+        <td th:text="${order.ingredients}"></td>
+        <td th:text="${order.sauce}"></td>
+        <td th:text="${order.orderTotal}"></td>
+        <td>
+            <a th:href="@{/panini/delete/{id}(id=${order.orderId})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

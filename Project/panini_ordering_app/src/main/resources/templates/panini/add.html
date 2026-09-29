@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Panini Order</title>
+</head>
+<body>
+
+<h1>New Panini Order</h1>
+
+<form th:action="@{/panini/save}" th:object="${order}" method="post">
+
+    <label>Date:</label>
+    <input type="date" th:field="*{orderDate}" required>
+    <br><br>
+
+    <label>Size:</label>
+    <select th:field="*{sandwichSize}" required>
+        <option value="">Select</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Full">Full</option>
+    </select>
+    <br><br>
+
+    <label>Bread:</label>
+    <select th:field="*{breadType}" required>
+        <option value="">Select</option>
+        <option value="Ciabatta">Ciabatta</option>
+        <option value="Focaccia">Focaccia</option>
+        <option value="Sourdough">Sourdough</option>
+    </select>
+    <br><br>
+
+    <label>Custom Order:</label>
+    <input type="checkbox" th:field="*{customOrder}">
+    <br><br>
+
+    <label>Sandwich Name:</label>
+    <input type="text" th:field="*{sandwichName}">
+    <br><br>
+
+    <label>Ingredients:</label>
+    <input type="text" th:field="*{ingredients}">
+    <br><br>
+
+    <label>Sauce:</label>
+    <input type="text" th:field="*{sauce}">
+    <br><br>
+
+    <label>Total:</label>
+    <input type="number" step="0.01" th:field="*{orderTotal}" required>
+    <br><br>
+
+    <button type="submit">Save Order</button>
+    <a href="/panini">Cancel</a>
+
+</form>
+
+</body>
+</html>
