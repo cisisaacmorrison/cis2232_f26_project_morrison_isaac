@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: headerFragment">
+    <title id="pageTitle">Squash Skills Tracker</title>
+    <!--        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+</head>
+<body>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<p th:text="#{application.name}" style="font-size: 80px; text-align: center;">Squash Scorer</p>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+</body>
+</html>

@@ -1,0 +1,501 @@
+html{
+    overflow: auto !important;
+    min-width:246px;
+
+}
+
+:root {
+
+    --main-color-light: #9AB9AF;
+    --main-color-primary: #90A583;
+    --main-color-dark: #593837;
+    --main-color-text: #FFFFFF;
+    --main-color-bright: #9D8420;
+    --main-color-accent: #942911;
+}
+
+/*input:not(.hidden){
+    display:inline-block;
+    float:right
+}*/
+.cd{
+    color:#F00!important;
+/*    font-weight:bold;*/
+/*    margin-bottom:-48px*/
+}
+label{
+    margin-right:8px
+}
+
+/*Make body height 100% so that footer stays at the bottom and position relative to the footer*/
+body {
+    position: relative;
+    height: 100%;
+    min-height: 100vh;
+    background: var(--main-color-light);
+}
+
+th,tr,td{
+    text-align:left;
+}
+td{
+    padding:0!important
+}
+tr th{
+    line-height:1;
+    padding-bottom:8px
+}
+tr:nth-child(even){
+    background-color: #FFF
+}
+.a{
+    padding:0 32px 0 0
+}
+h2{
+    /*    margin-bottom:-10px!important*/
+}
+table{
+    padding:0!important;
+    display:inline-block!important
+}
+
+.logo{
+    height: 40px
+}
+.no-link {
+    color: inherit
+}
+
+.no-link:hover {
+    text-decoration: none;
+    color: inherit
+}
+
+.table-title {
+    display: flex;
+    justify-content: space-between
+}
+
+/*TODO:merge this with centered instead.*/
+.table-container {
+    margin: 0 auto
+}
+
+.field-id {
+    width: 20px;
+    display: none
+}
+
+.flex-sp-btw {
+    display: flex;
+    /*TODO: find way to tell NetBeans to ignore this.*/
+    justify-content: space-evenly;
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between
+}
+
+.links > a {
+    margin-right: 24px
+}
+
+.nav {
+    margin-bottom: 50px;
+    background: var(--main-color-dark)
+}
+
+.ftr {
+    margin-top: 50px;
+    padding: 20px;
+    background: var(--main-color-dark);
+    color: var(--main-color-text);
+    bottom: 0;
+    /*    position:absolute;*/
+    width:100%
+}
+
+.vert-align {
+    display: flex;
+    align-items: center
+}
+.centered{
+    margin: 0 auto
+}
+
+/*drop down link*/
+.ddl{
+    margin:0 8px 0 8px;
+    font-size:28px
+}
+
+/*.centered is a lie.*/
+.centered2{
+    text-align:center
+}
+
+/*reason why this ain't up there is because i want him to see it
+TODO: change to html instead of using root.*/
+/*:root{
+    background-color:var(--main-color-light);
+}*/
+
+/*blue on blisque is ugly.*/
+.navbar-link:not(.is-arrowless)::after{
+    border-color:var(--main-color-primary) !important;
+}
+
+/*better constrast, otherwise you can't see anything on a bad monitor.'*/
+.navbar-link,.navbar-link:focus,.navbar-bgn{
+    color: var(--main-color-text) !important
+}
+
+.title{
+    color: var(--main-color-bright) !important
+}
+
+.accent{
+    color: var(--main-color-bright) !important;
+}
+
+.accent-background{
+    background-color: var(--main-color-dark) !important;
+}
+
+.error{
+    color: red !important
+}
+.success{
+    color: green !important
+}
+
+
+/*better constrast, otherwise you can't see anything on a bad monitor.'*/
+body,p,strong,th{
+    color: #000 !important
+}
+
+
+/*overriding the hover*/
+.navbar-link:hover{
+    /*    background-color: #fff !important*/
+    /*    background-color: var(--main-color-primary) !important;*/
+    color: var(--main-color-dark)!important;
+}
+
+.navbar-link:active{
+    /*    background-color: #fff !important*/
+    /*    background-color: var(--main-color-primary) !important;*/
+    color: var(--main-color-dark)!important;
+}
+
+.navbar-item:hover{
+    /*    background-color: var(--main-color-primary) !important;*/
+}
+
+/*overriding the hover*/
+.navbar-item:visited{
+    color: var(--main-color-text) !important;
+    /*    background-color: var(--main-color-primary);*/
+}
+
+
+/*fixes weird issue with the index button.*/
+.navbar-bgn{
+    padding:1rem 1rem
+}
+
+.navbar-bgn:focus{
+    /*    background-color:var(--main-color-light);*/
+}
+
+.navbar-bgn:hover{
+    /*    background-color:var(--main-color-light);*/
+}
+
+/*this gives me a headache*/
+@media (max-width:1023px){
+    .navbar-bgn{
+        padding:1rem .75rem !important
+    }
+
+    /*instead of the hamburger button taking up all the space, just force it to
+    live with the object on the left.*/
+    .navbar-brand{
+        right:0;
+        position:absolute;
+        z-index:1
+    }
+
+    /*not perfect, but definitively better than before where the text would just
+    appear below it...*/
+    #navbarBasicExample{
+        width:100%;
+        position:absolute
+    }
+
+    /*align arrows with hamburger button.*/
+    .navbar-link:not(.is-arrowless)::after{
+        margin-right: 3.15px
+    }
+    /*window size compatibility*/
+    .ddl{
+        display:inline-block;
+        margin-top:16px !important
+    }
+    .nav{
+        margin-bottom:16px !important
+    }
+    .navbar-menu.is-active{
+        padding:0
+    }
+    .navbar-index{
+        padding-bottom:0.86rem;
+        padding-top:0.86rem;
+        margin-right:52px
+    }
+}
+/*white background box.*/
+.wbb th,
+.wbb td {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.wbb, .ddl {
+    padding: 0px 8px 0px 8px !important;
+    background-color: #ccc !important;
+    border: 8px #ccc solid !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+}
+/*prevent text from disappearing*/
+@media screen and (min-width: 1024px){
+    .navbar-dropdown .navbar-item{
+        white-space:unset!important;
+        /*        background-color: var(--main-color-primary) !important;*/
+    }
+
+    .navbar-dropdown a.navbar-item{
+        padding-right: 16px!important
+    }
+
+    .navbar-end{
+        padding-right: 5px!important
+    }
+}
+
+.container{
+    background: var(--main-color-light);
+
+}
+.container button {
+    margin-top: 30px;
+}
+/*
+Arrange invoice list tittle and add button
+#invoiceLitsTittle {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}*/
+
+/*Adjust invoiceAdd fields witdh*/
+.field:not(:last-child) {
+    margin: 0 6rem 0.75rem 6rem;
+}
+/*
+#btnInvoiceAdd {
+    margin-left: 6rem;
+}*/
+
+/*Table styles */
+.tableStyles {
+    padding: 0;
+    background: #ccc;
+    display: inline-block;
+    border: 8px #ccc solid;
+    border-collapse: collapse;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.tableStyles tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.tableStyles th, td {
+    padding-right: 45px;
+}
+
+.tableStyles th:first-child,
+.tableStyles td:first-child {
+    padding-left: 10px;
+}
+
+.tableStyles th:last-child,
+.tableStyles td:last-child {
+    padding-right: 10px;
+}
+
+button,
+.button,
+input[type="submit"] {
+    background-color: #9D8420;
+    color: #FFFFFF;
+    border: none;
+}
+
+button:hover,
+.button:hover,
+input[type="submit"]:hover {
+    background-color: #942911;
+    color: #FFFFFF;
+}
+
+
+/* Panini Report Pages */
+
+.report-container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 35px;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+}
+
+.report-container h1 {
+    color: #593837;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.report-container h2 {
+    color: #593837;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.report-description {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.report-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.report-form label {
+    display: block;
+    font-weight: bold;
+    margin: 18px 0 6px;
+}
+
+.report-form input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #9AB9AF;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.report-container button {
+    display: block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 25px auto 0;
+}
+
+.report-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.report-card {
+    background-color: #9AB9AF;
+    border-left: 5px solid #9D8420;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.report-card h3 {
+    color: #593837;
+    margin: 0 0 10px;
+}
+
+.report-card p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 30px;
+    display: table;
+    white-space: normal;
+}
+
+.report-table th,
+.report-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.report-table th {
+    background-color: #593837;
+    color: #FFFFFF !important;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #f2f5f1;
+}
+
+.report-chart {
+    max-width: 750px;
+    height: 350px;
+    margin: 20px auto;
+}
+
+.report-back {
+    display: inline-block;
+    margin-top: 25px;
+    color: #942911;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .report-container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .report-summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .report-table {
+        display: table !important;
+        width: auto !important;
+        min-width: 60%;
+        max-width: 100%;
+        margin: 20px auto 30px !important;
+        border-collapse: collapse;
+    }
+
+    .report-table th:nth-child(2),
+    .report-table td:nth-child(2) {
+        text-align: center;
+    }
+}

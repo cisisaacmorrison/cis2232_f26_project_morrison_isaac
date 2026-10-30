@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle">Panini Sales Report Results</title>
+</head>
+
+<body>
+
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<div class="report-container">
+
+    <h1>Panini Sales Report</h1>
+
+    <p class="report-description">
+        Report Period:
+        <strong th:text="${startDate}"></strong>
+        to
+        <strong th:text="${endDate}"></strong>
+    </p>
+
+    <!-- Report Summary -->
+    <h2>Report Summary</h2>
+
+    <div class="report-summary">
+
+        <div class="report-card">
+            <h3>Total Orders</h3>
+            <p th:text="${totalOrders}"></p>
+        </div>
+
+        <div class="report-card">
+            <h3>Total Sandwiches</h3>
+            <p th:text="${totalSandwiches}"></p>
+        </div>
+
+        <div class="report-card">
+            <h3>Total Sales</h3>
+            <p th:text="'$' + ${#numbers.formatDecimal(totalSales, 1, 2)}"></p>
+        </div>
+
+    </div>
+
+    <!-- Sandwich Sales Breakdown -->
+    <h2>Sandwich Sales Breakdown</h2>
+
+    <p th:if="${#maps.isEmpty(sandwichSales)}">
+        No sandwich sales found for this date range.
+    </p>
+
+    <table class="report-table"
+           th:if="${!#maps.isEmpty(sandwichSales)}">
+
+        <thead>
+        <tr>
+            <th>Sandwich</th>
+            <th>Quantity Sold</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="entry : ${sandwichSales}">
+            <td th:text="${entry.key}"></td>
+            <td th:text="${entry.value}" style="text-align: center"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <!-- Sandwich Sales Chart -->
+    <h2>Sandwich Sales Chart</h2>
+
+    <div class="report-chart">
+        <canvas id="reportChart"></canvas>
+    </div>
+
+    <!-- Individual Orders -->
+    <h2>Individual Orders</h2>
+
+    <p th:if="${#lists.isEmpty(orders)}">
+        No orders were found for this date range.
+    </p>
+
+    <table class="report-table"
+           th:if="${!#lists.isEmpty(orders)}">
+
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Sandwich</th>
+            <th>Size</th>
+            <th>Bread</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.sandwichName}"></td>
+            <td th:text="${order.sandwichSize}"></td>
+            <td th:text="${order.breadType}"></td>
+            <td th:text="${'$' + #numbers.formatDecimal(order.orderTotal, 1, 2)}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <a class="report-back" th:href="@{/panini-report}">
+        Back to Report
+    </a>
+
+</div>
+
+<!-- Chart.js -->
+<script th:inline="javascript">
+
+    const sandwichNames = [[${sandwichNames}]];
+    const quantities = [[${sandwichQuantities}]];
+
+    const colors = [
+        '#593837',
+        '#90A583',
+        '#9D8420',
+        '#942911',
+        '#9AB9AF',
+        '#6F8E7B',
+        '#C17B55',
+        '#8064A2'
+    ];
+
+    const chartColors = sandwichNames.map(function(name, index) {
+        return colors[index % colors.length];
+    });
+
+    const ctx = document.getElementById('reportChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+            labels: sandwichNames,
+
+            datasets: [{
+                label: 'Sandwiches Sold',
+                data: quantities,
+                backgroundColor: chartColors,
+                borderWidth: 1
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            scales: {
+                y: {
+                    beginAtZero: true,
+
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

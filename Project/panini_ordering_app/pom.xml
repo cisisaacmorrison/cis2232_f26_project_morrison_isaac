@@ -19,8 +19,8 @@
     <groupId>ca.hccis.squash</groupId>
     <artifactId>squash_skills</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Aldo Reny's Gourmet Panini</name>
-    <description>Aldo Reny's Gourmet Panini Application</description>
+    <name>squash_skills_w26</name>
+    <description>Squash Skills Application</description>
     <packaging>jar</packaging>
 
     <!-- =================================================================== -->
