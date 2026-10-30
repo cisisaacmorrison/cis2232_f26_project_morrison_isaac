@@ -171,9 +171,34 @@ The starter application uses:
 
 ---
 
+## Panini Sales Report
+
+The report shows sandwich sales for a selected date range.
+
+Users enter a start date and end date to generate the report.
+
+The report shows:
+- Total orders
+- Total sandwiches sold
+- Total sales
+- Quantity sold for each sandwich
+- A bar chart of sandwich sales
+- A list of orders
+
+The report uses JDBC to get information from the database and saves a text file in `C:\cis2232\`.
+
+### Testing
+
+Using the sample data from October 26–29, 2026, the expected results are:
+- 8 orders
+- 8 sandwiches
+- $109.92 in sales
+
+---
+
 ## Project Status
 
-**Current Sprint:** Sprint 1 of 5
+**Current Sprint:** Sprint 2 of 5
 
 **Project:** Aldo Reny's Gourmet Panini
 
