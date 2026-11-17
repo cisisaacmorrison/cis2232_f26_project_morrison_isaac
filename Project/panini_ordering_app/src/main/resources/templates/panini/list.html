@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle">Panini Orders</title>
+</head>
+
+<body>
+
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<div class="report-container">
+
+    <h1>Panini Orders</h1>
+
+    <p class="report-description">
+        View and manage all customer panini orders.
+    </p>
+
+    <h2>Order List</h2>
+
+    <p th:if="${#lists.isEmpty(orders)}">
+        No panini orders have been found.
+    </p>
+
+    <table class="report-table"
+           th:if="${!#lists.isEmpty(orders)}">
+
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Sandwich</th>
+            <th>Size</th>
+            <th>Bread</th>
+            <th>Custom Order</th>
+            <th>Ingredients</th>
+            <th>Sauce</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.orderDate}"></td>
+            <td th:text="${order.sandwichName}"></td>
+            <td th:text="${order.sandwichSize}"></td>
+            <td th:text="${order.breadType}"></td>
+            <td th:text="${order.customOrder ? 'Yes' : 'No'}"></td>
+            <td th:text="${order.ingredients}"></td>
+            <td th:text="${order.sauce}"></td>
+            <td th:text="${order.orderTotal != null ? '$' + #numbers.formatDecimal(order.orderTotal, 1, 2) : 'N/A'}"></td>
+            <td>
+                <a th:href="@{/panini-orders/edit/{id}(id=${order.orderId})}">
+                    Edit
+                </a>
+
+                <form th:action="@{/panini-orders/delete/{id}(id=${order.orderId})}"
+                      method="post"
+                      style="display:inline;">
+                    <button type="submit"
+                            onclick="return confirm('Are you sure you want to delete this order?');">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <a class="report-back" th:href="@{/}">
+        Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

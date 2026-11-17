@@ -3,7 +3,9 @@ package ca.hccis.squash.jpa.entity;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import ca.hccis.squash.jpa.entity.PaniniOrder;
+import java.util.List;
+
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "panini_order")
@@ -37,6 +39,20 @@ public class PaniniOrder {
 
     @Column(name = "order_total")
     private BigDecimal orderTotal;
+
+    @Transient
+    private java.util.List<String> selectedIngredients;
+
+    @Transient
+    private List<String> selectedSauces;
+
+    public java.util.List<String> getSelectedIngredients() {return selectedIngredients;}
+
+    public void setSelectedIngredients(java.util.List<String> selectedIngredients) {this.selectedIngredients = selectedIngredients;}
+
+    public List<String> getSelectedSauces() {return selectedSauces;}
+
+    public void setSelectedSauces(List<String> selectedSauces) {this.selectedSauces = selectedSauces;}
 
     public Integer getOrderId() {
         return orderId;

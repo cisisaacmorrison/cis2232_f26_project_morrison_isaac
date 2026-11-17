@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
@@ -55,14 +54,14 @@
 
         <thead>
         <tr>
-            <th>Sandwich</th>
-            <th>Quantity Sold</th>
+            <th style="text-align: center !important;">Sandwich</th>
+            <th style="text-align: center !important;">Quantity Sold</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:each="entry : ${sandwichSales}">
-            <td th:text="${entry.key}"></td>
+            <td th:text="${entry.key}" style="text-align: center !important;"></td>
             <td th:text="${entry.value}" style="text-align: center"></td>
         </tr>
         </tbody>

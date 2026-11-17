@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle">Panini Order</title>
+</head>
+
+<body>
+
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<div class="report-container order-page">
+
+    <h1 th:text="${isEdit} ? 'Edit Panini Order' : 'Add Panini Order'">
+        Add Panini Order
+    </h1>
+
+    <p class="report-description"
+       th:text="${isEdit} ? 'Update the details and ingredients for this panini order.' : 'Build a delicious panini by choosing your sandwich, size, bread and ingredients.'">
+        Build a delicious panini by choosing your sandwich, size, bread and ingredients.
+    </p>
+
+    <form class="order-form"
+          th:action="${isEdit} ? @{/panini-orders/edit/{id}(id=${order.orderId})} : @{/panini-orders/add}"
+          th:object="${order}"
+          method="post">
+
+        <section class="order-section">
+
+            <div class="section-heading">
+                <span class="section-number">01</span>
+                <div>
+                    <h2>Order Details</h2>
+                    <p>Choose your sandwich and its basic details.</p>
+                </div>
+            </div>
+
+            <div class="form-two-columns">
+
+                <div>
+                    <label for="orderDate">Order Date</label>
+                    <input type="date"
+                           id="orderDate"
+                           th:field="*{orderDate}"
+                           required>
+                </div>
+
+                <div>
+                    <label for="sandwichName">Sandwich Type</label>
+                    <select id="sandwichName" th:field="*{sandwichName}" required>
+                        <option value="">Select a sandwich</option>
+                        <option value="Classic Italian">Classic Italian</option>
+                        <option value="Caprese">Caprese</option>
+                        <option value="Meatball">Meatball</option>
+                        <option value="Chicken Pesto">Chicken Pesto</option>
+                        <option value="Vegetariano">Vegetariano</option>
+                        <option value="Custom Panini">Custom Panini</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="sandwichSize">Sandwich Size</label>
+                    <select id="sandwichSize" th:field="*{sandwichSize}" required>
+                        <option value="">Select a size</option>
+                        <option value="Lunch">Lunch - $10.00</option>
+                        <option value="Full">Full - $15.00</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="breadType">Bread</label>
+                    <select id="breadType" th:field="*{breadType}" required>
+                        <option value="">Select bread</option>
+                        <option value="Ciabatta">Ciabatta - No extra charge</option>
+                        <option value="Focaccia">Focaccia - $2.00 extra</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="order-section custom-section" id="customSection">
+
+            <div class="section-heading">
+                <span class="section-number">02</span>
+                <div>
+                    <h2>Customize Your Sandwich</h2>
+                    <p>Select your preferred toppings and sauces.</p>
+                </div>
+            </div>
+
+            <div class="ingredient-group">
+                <h3>Toppings</h3>
+
+                <div class="ingredient-grid">
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Mozzarella">
+                        <span>Mozzarella</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Provolone">
+                        <span>Provolone</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Salami">
+                        <span>Salami</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Pepperoni">
+                        <span>Pepperoni</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Ham">
+                        <span>Ham</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Meatball">
+                        <span>Meatball</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Chicken">
+                        <span>Chicken</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Tomato">
+                        <span>Tomato</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedIngredients}" value="Peppers">
+                        <span>Peppers</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="ingredient-group sauce-group">
+                <h3>Sauces</h3>
+                <p>You can choose more than one sauce.</p>
+
+                <div class="ingredient-grid">
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedSauces}" value="Pesto">
+                        <span>Pesto</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedSauces}" value="Mayo">
+                        <span>Mayo</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedSauces}" value="Olive Oil">
+                        <span>Olive Oil</span>
+                    </label>
+
+                    <label class="ingredient-option">
+                        <input type="checkbox" th:field="*{selectedSauces}" value="Balsamic">
+                        <span>Balsamic</span>
+                    </label>
+
+                </div>
+            </div>
+
+        </section>
+
+        <div class="order-actions">
+            <button type="submit"
+                    th:text="${isEdit} ? 'Update Order' : 'Place Order'">
+                Place Order
+            </button>
+
+            <a class="report-back" th:href="@{/panini-orders}">
+                Cancel
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+    const sandwichSelect = document.getElementById("sandwichName");
+    const customSection = document.getElementById("customSection");
+    const orderForm = document.querySelector(".order-form");
+
+    function updateCustomSection() {
+        const isCustom = sandwichSelect.value === "Custom Panini";
+
+        customSection.style.display = isCustom ? "block" : "none";
+
+        customSection.querySelectorAll("input").forEach(input => {
+            input.disabled = !isCustom;
+        });
+    }
+
+    orderForm.addEventListener("submit", function(event) {
+        if (sandwichSelect.value === "Custom Panini") {
+
+            const toppings = customSection.querySelectorAll(
+                'input[name="selectedIngredients"]:checked'
+            );
+
+            if (toppings.length === 0) {
+                event.preventDefault();
+                alert("Please select at least one topping for your panini!");
+            }
+        }
+    });
+
+    sandwichSelect.addEventListener("change", updateCustomSection);
+
+    updateCustomSection();
+</script>
+
+</body>
+</html>
